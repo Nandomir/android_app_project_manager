@@ -11,6 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProjectListActivity extends AppCompatActivity {
@@ -26,12 +30,13 @@ public class ProjectListActivity extends AppCompatActivity {
 
         listViewItems = (ListView)findViewById(R.id.listViewItems);
         projects = new ArrayList<String>();
+        readProjects();
         projectAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, projects);
 
 
         listViewItems.setAdapter(projectAdapter);
-        projects.add("Ruby/Sql");
-        projects.add("Android");
+//        projects.add("Ruby/Sql");
+
         listViewDeleteLongListener();
         listViewEditListener();
     }
@@ -42,6 +47,7 @@ public class ProjectListActivity extends AppCompatActivity {
 
         projectAdapter.add(projectText);
         editNewProject.setText("");
+        writeProjects();
     }
 
     public void listViewDeleteLongListener() {
@@ -59,6 +65,7 @@ public class ProjectListActivity extends AppCompatActivity {
                         projectAdapter.notifyDataSetChanged(); // refreshes the view list
                     }});
                 adb.show();
+                writeProjects();
                 return true;
             }
         });
@@ -72,4 +79,27 @@ public class ProjectListActivity extends AppCompatActivity {
             }
         }
         );}
+
+
+    private void readProjects() {
+        File filesDir = getFilesDir();
+        File projectFile = new File(filesDir, "project.txt");
+        try {
+            projects = new ArrayList<String>(FileUtils.readLines(projectFile));
+        } catch (IOException e) {
+            projects = new ArrayList<String>();
+        }
     }
+
+    private void writeProjects() {
+        File filesDir = getFilesDir();
+        File projectFile = new File(filesDir, "project.txt");
+        try {
+            FileUtils.writeLines(projectFile, projects);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+}
