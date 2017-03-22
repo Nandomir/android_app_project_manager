@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.codeclan.projectmanager12.TaskListActivity"
+    android:padding="5dp"
+    tools:layout_editor_absoluteY="16dp"
+    tools:layout_editor_absoluteX="16dp">
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listViewTasks"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/buttonAddTask" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editNewTask"
+        android:layout_alignTop="@+id/buttonAddTask"
+        android:hint="New task"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/buttonAddTask"
+        android:layout_toStartOf="@+id/buttonAddTask"
+        android:layout_alignParentBottom="true" />
+
+    <Button
+        android:id="@+id/buttonAddTask"
+        android:onClick="clickedNewTask"
+        android:text="New task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/buttonBackToProjectList"
+        android:onClick="clickedBackToProjectList"
+        android:text="Back to projects"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>
