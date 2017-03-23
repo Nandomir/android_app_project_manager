@@ -11,11 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class TaskListActivity extends AppCompatActivity {
@@ -35,7 +30,7 @@ public class TaskListActivity extends AppCompatActivity {
 
         listViewTasks = (ListView)findViewById(R.id.listViewTasks);
         tasks = new ArrayList<String>();
-        readTasks();
+//        readTasks();
         taskAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tasks);
 
         listViewTasks.setAdapter(taskAdapter);
@@ -53,7 +48,7 @@ public class TaskListActivity extends AppCompatActivity {
 
         taskAdapter.add(taskText);
         editNewTask.setText("");
-        writeTasks();
+//        writeTasks();
     }
 
 
@@ -72,7 +67,7 @@ public class TaskListActivity extends AppCompatActivity {
                         taskAdapter.notifyDataSetChanged(); // refreshes the view list
                     }});
                 adb.show();
-                writeTasks();
+//                writeTasks();
                 return true;
             }
         });
@@ -80,25 +75,27 @@ public class TaskListActivity extends AppCompatActivity {
 
 
 
-    private void readTasks() {
-        File filesDir = getFilesDir();
-        File taskFile = new File(filesDir, "task.txt");
-        try {
-            tasks = new ArrayList<String>(FileUtils.readLines(taskFile));
-        } catch (IOException e) {
-            tasks = new ArrayList<String>();
-        }
-    }
 
-    private void writeTasks() {
-        File filesDir = getFilesDir();
-        File taskFile = new File(filesDir, "task.txt");
-        try {
-            FileUtils.writeLines(taskFile, tasks);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
+//    private void readTasks() {
+//        File filesDir = getFilesDir();
+//        File taskFile = new File(filesDir, "task.txt");
+//        try {
+//            tasks = new ArrayList<String>(FileUtils.readLines(taskFile));
+//        } catch (IOException e) {
+//            tasks = new ArrayList<String>();
+//        }
+//    }
+//
+//    private void writeTasks() {
+//        File filesDir = getFilesDir();
+//        File taskFile = new File(filesDir, "task.txt");
+//        try {
+//            FileUtils.writeLines(taskFile, tasks);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
 }
